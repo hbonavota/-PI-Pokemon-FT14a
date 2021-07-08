@@ -1,11 +1,7 @@
-require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
-
+const {DB_USER, DB_PASSWORD, DB_HOST,} = require("./utils/config/index");
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -13,6 +9,16 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
+const testConectionDB = async ()=>{
+  try {
+    await sequelize.authenticate();
+    console.log('The Connection has been established successfully. ;)');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+testConectionDB();
+
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
