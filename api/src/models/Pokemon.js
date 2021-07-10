@@ -5,13 +5,17 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
     id: {
-      type: DataTypes.UUID,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
       primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    url:{
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   });
 };
