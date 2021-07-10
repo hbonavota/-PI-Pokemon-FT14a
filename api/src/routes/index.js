@@ -14,17 +14,23 @@ const dataApi = async ()=>{
 }
   
 router.post('/pokemons',async (req,res)=>{
-  const  dataNewPokemon = req.body;
-  const newPoke = await Pokemon.create({
-    ...dataNewPokemon,
-    id: uuidv4()
-})
-  console.log("the id from newPoke created is :", newPoke.id)
-  res.send("poke agregado con exito")
+  try {
+    const  dataNewPokemon = req.body;
+    const newPoke = await Pokemon.create({
+      ...dataNewPokemon,
+      idd: uuidv4()
+    })
+    console.log("the id from newPoke created is :", newPoke.idd)
+    res.send("poke agregado con exito")
+    
+  } catch (error) {
+    console.log(error)
+    res.status(404).send("ruta no valida");
+  }
 });
 
 router.get('/pokemons', async (req,res)=>{
-  const name = req.query.name;
+  let name = req.query.name;
   const resultsApi = await dataApi();
 
   if(name){
