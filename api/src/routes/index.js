@@ -63,6 +63,24 @@ router.get('/pokemons', async (req,res)=>{
 
 })
 
+router.get('/pokemons/:id', async (req, res,next)=> {
+  if(req.params.id.includes("-")){
+    const byidd = await Pokemon.findOne({
+      where: {
+        idd: req.params.id
+      }
+    });
+    res.json(byidd)
+
+  }else{
+    Pokemon.findByPk(req.params.id)
+      .then(byID =>
+        byID ? res.json(byID) : res.sendStatus(404)
+      )
+      .catch(error => next(error))
+  }
+});
+
 router.get('/types',async(req,res)=>{
   const resultsApiTypes = await typesDataApi();
   try {
