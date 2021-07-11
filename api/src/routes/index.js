@@ -12,6 +12,10 @@ const dataApi = async ()=>{
     //console.log("arr.result es :",arr.data.results);
     return arr.data.results;
 }
+const typesDataApi = async ()=>{
+  const typesArr = await  axios.get('https://pokeapi.co/api/v2/type');
+  return typesArr.data.results;
+}
   
 router.post('/pokemons',async (req,res)=>{
   try {
@@ -50,16 +54,28 @@ router.get('/pokemons', async (req,res)=>{
     }
   }
   try {
-    let containsBase = await Pokemon.findAll();
-    if(!containsBase.length) await Pokemon.bulkCreate(resultsApi)
+    let containsDBase = await Pokemon.findAll();
+    if(!containsDBase.length) await Pokemon.bulkCreate(resultsApi)
     res.json(resultsApi)
   } catch (error) {
     console.log(error)
   }
 
-
 })
 
+router.get('/types',async(req,res)=>{
+  const resultsApiTypes = await typesDataApi();
+  try {
+    let containsTypes = await Type.findAll();
+    if(!containsTypes.length) {
+      await Type.bulkCreate(resultsApiTypes)
+      let containsTypes = await Type.findAll();
+      res.json(containsTypes)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
