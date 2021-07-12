@@ -9,7 +9,6 @@ const { v4: uuidv4 } = require('uuid');
 
 const dataApi = async ()=>{
     const arr = await  axios.get('https://pokeapi.co/api/v2/pokemon');
-    //console.log("arr.result es :",arr.data.results);
     return arr.data.results;
 }
 const typesDataApi = async ()=>{
@@ -25,7 +24,7 @@ router.post('/pokemons',async (req,res)=>{
       idd: uuidv4()
     })
     console.log("the id from newPoke created is :", newPoke.idd)
-    res.send("poke agregado con exito")
+    res.status(200).send("poke agregado con exito")
     
   } catch (error) {
     console.log(error)
@@ -88,7 +87,7 @@ router.get('/types',async(req,res)=>{
     if(!containsTypes.length) {
       await Type.bulkCreate(resultsApiTypes)
       let containsTypes = await Type.findAll();
-      res.json(containsTypes)
+      res.status(200).json(containsTypes)
     }
   } catch (error) {
     console.log(error)
