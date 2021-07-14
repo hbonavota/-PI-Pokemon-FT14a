@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-//import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {getPokemon} from "../../actions/index.js"
 import { connect } from "react-redux";
+import './Search.css';
 
 
 export class Search extends Component {
@@ -26,7 +27,7 @@ export class Search extends Component {
             <h2>Buscador</h2>
             <form className="form-container" onSubmit={(e) => this.handleSubmit(e)}>
               <div>
-                <label className="label" htmlFor="name">Pokemon: </label>
+                <label className="label" htmlFor="name">Pokemon: -> </label>
                 <input
                   type="text"
                   id="name"
@@ -37,16 +38,16 @@ export class Search extends Component {
               </div>
               <button type="submit">BUSCAR</button>
             </form>
-           {/*  <ul>
-             {this.props.movies && this.props.movies.map(el =>(
-              <div Key={el.imdbID}>
+             <ul>
+             {this.props.pokemons && this.props.pokemons.map(el =>(
+              <div Key={el.id}>
                 
-                <NavLink to={`/movie/${el.imdbID}`}>{el.name}</NavLink>
+                <NavLink to={`/pokemons/${el.id}`}>{el.name}</NavLink>
 
               </div>
              ))
              }
-            </ul> */}
+            </ul>
           </div>
         );
       }

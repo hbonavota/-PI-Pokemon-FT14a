@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../logo.png'
-import './Landing.css';
+import './NavBar.css';
 
 export default function NavBar() {
     return (
@@ -12,7 +12,9 @@ export default function NavBar() {
             <nav>
             <ul className="list">
                     <li className="list-item">
-                        <NavLink exact to="/home" >HOME</NavLink>
+                        <NavLink exact to="/Home" >HOME</NavLink>
+                        <NavLink exact to="/Search" >SEARCH</NavLink>
+                        <NavLink exact to="/addpokemon" >CREATE POKEMON</NavLink>
                     </li>
                 </ul>
             </nav>
