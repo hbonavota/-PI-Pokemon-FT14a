@@ -50,16 +50,17 @@ const typesDataApi = async ()=>{
 router.post('/pokemons',async (req,res)=>{
   try {
     const  dataNewPokemon = req.body;
+    
     const newPoke = await Pokemon.create({
       ...dataNewPokemon,
       idd: uuidv4()
     })
     console.log("the id from newPoke created is :", newPoke.idd)
-    res.status(200).send("poke agregado con exito")
+    res.status(200).json(newPoke)
     
   } catch (error) {
     console.log(error)
-    res.status(404).send("ruta no valida");
+    res.status(404).send("Los parametros no son correctos o no es una ruta no valida");
   }
 });
 

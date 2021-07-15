@@ -17,37 +17,58 @@ export class Search extends Component {
       }
       handleSubmit(event) {
         event.preventDefault();
+        //this.setState({ name: event.target.value });
         this.props.getPokemon(this.state.name);
       }
     
       render() {
-        const { name } = this.state;
+        const { byname } = this.state;
+
+        let composemap = ()=>{
+          if(this.props.pokes.error){
+            return <h1>"pokemon no encontrado =("</h1>
+          }else{
+           return this.props.pokes.map(el =>(
+            <div Key={el.id}>
+              
+              <NavLink to={`/pokemons/${el.id}`}>{el.name}</NavLink>
+  
+            </div>
+           ));
+          }
+          }
+
+          console.log("composemap",composemap())
+
         return (
           <div>
             <h2>Buscador</h2>
             <form className="form-container" onSubmit={(e) => this.handleSubmit(e)}>
               <div>
-                <label className="label" htmlFor="name">Pokemon: -> </label>
+                <label className="label" htmlFor="name">Pokemon :</label>
                 <input
                   type="text"
                   id="name"
                   autoComplete="off"
-                  value={name}
-                  onChange={(e) => this.handleChange(e)}
+                  value={byname}
+                  onChange={(e) => this.handleChange(e) }
+                  required
                 />
               </div>
               <button type="submit">BUSCAR</button>
             </form>
-             <ul>
-             {this.props.pokemons && this.props.pokemons.map(el =>(
+            
+            <div>
+              {composemap()}
+             {/* {this.props.pokes && this.props.pokes.map(el =>(
               <div Key={el.id}>
                 
                 <NavLink to={`/pokemons/${el.id}`}>{el.name}</NavLink>
 
               </div>
              ))
-             }
-            </ul>
+             } */}
+            </div>
           </div>
         );
       }
@@ -55,7 +76,7 @@ export class Search extends Component {
 
     function mapStateToProps(state) {
         return {
-            pokemons: state.pokemons
+            pokes: state.pokemons
         };
       }
       
