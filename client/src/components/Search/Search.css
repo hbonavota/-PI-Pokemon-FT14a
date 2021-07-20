@@ -13,3 +13,37 @@
 .label {
     padding-right: 10px;
 }
+
+.Ctn{
+    border: 3px solid;
+    background:rgba(121, 120, 120, 0.568);
+    border-radius: 5px;
+    width: 300px;
+    height: auto;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.Ctn a{
+    color:black;
+    font-size: larger;
+
+}
+.Ctn a:hover,
+.Ctn a.active {
+    background-color: #808080;
+    color: white;
+}
+
+.containsPrev{    
+    margin: 20px;
+    width: 18rem;
+    background-color: rgb(139, 138, 143);
+    opacity: 0.8;
+    border-radius:90px;
+    justify-content: center;
+    display: flex;
+}

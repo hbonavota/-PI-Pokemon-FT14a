@@ -1,6 +1,6 @@
 .Ctn{
     border: 3px solid;
-    background:rgba(121, 120, 120, 0.219);
+    background:rgba(121, 120, 120, 0.568);
     border-radius: 5px;
     width: 300px;
     height: auto;
@@ -8,6 +8,18 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    margin: 10px;
+}
+
+.Ctn a{
+    color:black;
+    font-size: larger;
+
+}
+.Ctn a:hover,
+.Ctn a.active {
+    background-color: #808080;
+    color: white;
 }
 
 .containsPrev{    
@@ -15,22 +27,25 @@
     width: 18rem;
     background-color: rgb(139, 138, 143);
     opacity: 0.8;
-    border-radius:20px;
+    border-radius:90px;
     justify-content: center;
     display: flex;
 }
 
 
 .title{
-    text-align: center
+    text-align: center;
+    color: black;
 }
 .CtnMayor{
     flex-wrap: wrap;
     display: flex;
+    margin: 20px;
+    justify-content:center;
+    align-items: center;
 }
 
 .ctn{
-    border: 1px solid;
     flex-wrap: wrap;
     display: flex;
 

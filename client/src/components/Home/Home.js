@@ -10,10 +10,9 @@ export class Home extends Component {
         
         this.props.getAllPokemon();
     }    
-    
       render() {
         return (
-            <div>
+            <div className="CtnMayor">
                 <h2 className="title">POKEMONS</h2>
                 <div className="CtnMayor">
                     <div className="ctn">

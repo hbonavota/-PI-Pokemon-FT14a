@@ -4,7 +4,12 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
-     idd: {
+     id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      primaryKey: true
+    }, 
+    idd: {
       type: DataTypes.STRING,
       allowNull: true,
     }, 
@@ -20,7 +25,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    type:{
+    types:{
       type: DataTypes.STRING,
       allowNull: true
     }

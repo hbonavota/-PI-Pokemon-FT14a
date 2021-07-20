@@ -26,13 +26,15 @@ export class Search extends Component {
 
         let composemap = ()=>{
           if(this.props.pokes.error){
-            return <h1>"pokemon no encontrado =("</h1>
+            return <h1>"=( ¡Pokemon not Found!, try again =) "</h1>
           }else{
            return this.props.pokes.map(el =>(
-            <div Key={el.id}>
+            <div className="Ctn" Key={el.id}>
               
               <NavLink to={`/pokemons/${el.id}`}>{el.name}</NavLink>
-  
+              <div className="containsPrev">
+                  <img className="img" src={el.img} alt="No hay imagen :/"></img>
+              </div>
             </div>
            ));
           }

@@ -40,10 +40,8 @@ async function sendNewPoke (input) {
    });
    const datanewPoke = await response.json();
 
-   console.log("response a secas",response)
-
    if(response.status === 200 && response.ok === true){
-     alert(`The pokemon has been created by ID: ${datanewPoke.idd}, please save it`)
+     alert(`The pokemon has been created by ID: ${datanewPoke.id}, please save it`)
    }
 
    } catch (error) {

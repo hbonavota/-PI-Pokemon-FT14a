@@ -2,7 +2,7 @@ const { Router } = require('express');
 const axios = require('axios');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const {Pokemon, Type} = require("../db.js");
+const {Pokemon, Tipos} = require("../db.js");
 const {Op} = require("sequelize");
 const router = Router();
 const { v4: uuidv4 } = require('uuid');
@@ -53,9 +53,9 @@ router.post('/pokemons',async (req,res)=>{
     
     const newPoke = await Pokemon.create({
       ...dataNewPokemon,
-      idd: uuidv4()
+      id: uuidv4(),
     })
-    console.log("the id from newPoke created is :", newPoke.idd)
+    console.log("the id from newPoke created is :", newPoke.id)
     res.status(200).json(newPoke)
     
   } catch (error) {
@@ -78,7 +78,7 @@ router.get('/pokemons', async (req,res)=>{
         }
       });
       if(!byname.length) {
-        res.status(404).json({error: "the name it is not exists"});
+        res.status(404).json({error: "the name isn't exists"});
       }
       return res.json(byname)
     } catch (error) {
@@ -88,7 +88,7 @@ router.get('/pokemons', async (req,res)=>{
   }
   try {
     let containsDBase = await Pokemon.findAll();
-    if(!containsDBase.length) await Pokemon.bulkCreate(moreInfo)
+    if(!containsDBase.length || containsDBase.length < 12 ) await Pokemon.bulkCreate(moreInfo)
     res.json(moreInfo)
   } catch (error) {
     console.log(error)
@@ -100,7 +100,7 @@ router.get('/pokemons/:id', async (req, res,next)=> {
   if(req.params.id.includes("-")){
     const byidd = await Pokemon.findOne({
       where: {
-        idd: req.params.id
+        id: req.params.id
       }
     });
     res.json(byidd)
@@ -117,12 +117,13 @@ router.get('/pokemons/:id', async (req, res,next)=> {
 router.get('/types',async(req,res)=>{
   const resultsApiTypes = await typesDataApi();
   try {
-    let containsTypes = await Type.findAll();
-    if(!containsTypes.length) {
-      await Type.bulkCreate(resultsApiTypes)
-      let containsTypes = await Type.findAll();
+    let containsTypes = await Tipos.findAll();
+    if(!containsTypes.length || containsTypes.length < 12) {
+      await Tipos.bulkCreate(resultsApiTypes)
+      let containsTypes = await Tipos.findAll();
       res.status(200).json(containsTypes)
     }
+    res.status(200).json(containsTypes)
   } catch (error) {
     console.log(error)
   }

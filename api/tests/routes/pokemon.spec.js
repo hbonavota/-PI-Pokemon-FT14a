@@ -30,7 +30,7 @@ describe('Pokemon routes', () => {
     agent.post("/pokemons").send(pokemon).expect(200)
     );
     it('should return the mesagge when the newpokemon is created ', () =>
-    agent.post("/pokemons").send(pokemon).expect("poke agregado con exito")
+    agent.post("/pokemons").send(pokemon).expect(/id.+created/i)
     );
     
   });
