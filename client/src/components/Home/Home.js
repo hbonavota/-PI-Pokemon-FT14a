@@ -15,8 +15,9 @@ export class Home extends Component {
             <div className="CtnMayor">
                 <h2 className="title">POKEMONS</h2>
                 <div className="CtnMayor">
+                      <button>Anterior</button>
+                      <button>Siguiente</button>
                     <div className="ctn">
-                        
                             {this.props.allpokemons && this.props.allpokemons.map(elem =>(
                             <div  className="Ctn" Key={elem.id}>
                                 
@@ -24,11 +25,20 @@ export class Home extends Component {
                                 <div className="containsPrev">
                                     <img className="img" src={elem.img} alt="No hay imagen :/"></img>
                                 </div>
+                                <div>
+                                    <h3>Types : {elem.types}</h3>
+                                    <h3>Speed : {elem.speed}</h3>
+                                    <h3>Height : {elem.height}</h3>
+                                    <h3>Weight : {elem.weight}</h3>
+                                    <h3>Attack : {elem.attack}</h3>
+                                    <h3>Defense : {elem.defense}</h3>
+                                    <h3>HP : {elem.hp}</h3>
+                                </div>
                             </div>
                             ))
                             }
-                        
                     </div>
+                        
                 </div>
           </div>
         );

@@ -28,6 +28,7 @@ export class PokemonDetail extends Component {
                         <img className="img" src={this.props.pokemonsbyId.img} alt="No hay imagen :/"></img>
                     </div>
                     <h2>Types : {this.props.pokemonsbyId.types}</h2>
+                    
                 </div>
                 
             </div>

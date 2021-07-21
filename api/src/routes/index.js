@@ -9,8 +9,21 @@ const { v4: uuidv4 } = require('uuid');
 
 const dataApi = async ()=>{
     const arr = await  axios.get('https://pokeapi.co/api/v2/pokemon');
+    console.log("arr.data.next: ",arr.data.next)
     return arr.data.results;
+    
 }
+const dataApiNext = async ()=>{
+  try {
+    const arr = await  axios.get('https://pokeapi.co/api/v2/pokemon');
+    const arrNext = await axios.get(arr.data.next)
+  return arrnext;
+  } catch (error) {
+    console.log(error)
+  }
+  
+}
+
 const moreDataApi = async ()=>{
   try {
     const resultsDataApi = await dataApi();
@@ -23,12 +36,24 @@ const moreDataApi = async ()=>{
         id: res.id,
         name: res.name,
         img: res.sprites.front_default,
+        speed: res.stats[5].base_stat,
+        height: res.height,
+        weight: res.weight,
+        defense: res.stats[2].base_stat,
+        attack: res.stats[1].base_stat,
+        hp: res.stats[0].base_stat,
         types: res.types[0].type.name
       }) :
         (oneByOnePoke = {
             id: res.id,
             name: res.name,
             img: res.sprites.front_default,
+            speed: res.stats[5].base_stat,
+            height: res.height,
+            weight: res.weight,
+            defense: res.stats[2].base_stat,
+            attack: res.stats[1].base_stat,
+            hp: res.stats[0].base_stat,
             types: res.types[0].type.name + ", " + res.types[1].type.name
         })
 
