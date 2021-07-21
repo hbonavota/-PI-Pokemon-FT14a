@@ -28,7 +28,7 @@ const moreDataApi = async ()=>{
   try {
     const resultsDataApi = await dataApi();
     let results =[];
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < resultsDataApi.length; i++) {
       let newResults = await axios.get(resultsDataApi[i].url);
       let res = newResults.data
       let oneByOnePoke = {}
